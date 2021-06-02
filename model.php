@@ -19,4 +19,6 @@
         $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $res;
     }
+
+    
 ?>
