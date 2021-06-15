@@ -54,3 +54,11 @@
             </div>
         </div>
     </section>
+
+    <footer class="footer bg-danger py-2">
+        <div class="container">
+            <p class="text-white mt-2 text-center">
+                COVACINE@2021
+            </p>
+        </div>
+    </footer>

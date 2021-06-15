@@ -1,3 +1,21 @@
+<?php
+// echo "<pre>";
+// print_r($data['cov']);
+// echo "</pre>";
+
+$get = $data['cov']['features'];
+// foreach ($get as $key => $value){
+//     // print_r($value['attributes']);
+//     foreach($value as $name => $attr){
+//         if($name =='attributes'){
+//             print_r($attr);
+
+//         }
+//     }
+//     }
+
+?>
+
 <header class="navi">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-danger">
         <div class="container">
@@ -51,3 +69,43 @@
             </div>
         </div>
     </section>
+    <div class="home-content px-5 bg-light py-3 rounded">
+        <h1 class="text-center">Data Covid </h1>
+        <table class="table table-paginate" id="dtBasicExample">
+            <thead class="thead-dark">
+                <tr class="table-light">
+                    <th scope="col">FID</th>
+                    <th scope="col">Kode Provinsi</th>
+                    <th scope="col">Provinsi</th>
+                    <th scope="col">Kasus Positif</th>
+                    <th scope="col">Sembuh</th>
+                    <th scope="col">Meninggal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($get as $key => $value): ?>
+                    <?php  foreach($value as $name => $attr): ?>
+                        <?php if($name =='attributes'): ?>
+                            <tr class="table-light">
+                                <th scope="row"><?= $attr['FID'] ;?></th>
+                                <td><?= $attr['Kode_Provi'] ;?></td>
+                                <td><?= $attr['Provinsi'] ;?></td>
+                                <td><?= $attr['Kasus_Posi'] ;?></td>
+                                <td><?= $attr['Kasus_Semb'] ;?></td>
+                                <td><?= $attr['Kasus_Meni'] ;?></td>                            
+                            </tr>
+                        <?php endif;?>
+                    <?php endforeach;?>
+                <?php endforeach;?>
+                
+            </tbody>
+        </table>
+    </div>
+
+    <footer class="footer bg-danger py-2">
+        <div class="container">
+            <p class="text-white mt-2 text-center">
+                COVACINE@2021
+            </p>
+        </div>
+    </footer>
