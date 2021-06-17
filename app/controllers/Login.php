@@ -6,6 +6,11 @@ class Login extends Controller{
     
 
     public function index(){
+        session_start();
+        if ($_SESSION['auth']){
+            header('Location: '.BASEURL.'/Dashboard/index');
+            exit;
+        }
         $data['page_name'] = 'Login';
         // $data['acc'] = $this->model('Data_model')->get_account();
         $this->view('templates/header',$data);
@@ -28,8 +33,9 @@ class Login extends Controller{
             $_SESSION['auth'] = $this->biscuits();
             // echo $_SESSION['auth'];
             if ($_SESSION['auth']){
-                    header('Location: '.BASEURL.'/Dashboard/index');
-                    exit;
+                
+                header('Location: '.BASEURL.'/Dashboard/index');
+                exit;
             }else{
                 $this->burnt();
                 header('Location: '.BASEURL.'/Login');
@@ -43,18 +49,18 @@ class Login extends Controller{
             setcookie('tok',$token,time()+60,'/');
             $_SESSION['uname'] = $this->uname;
             $_SESSION['passwd'] = $this->passwd;
-            header('Location: '.BASEURL.'/Login/check');
             ini_set('session.gc_maxlifetime', time()+60);
+            header('Location: '.BASEURL.'/Login/check');
             exit;
         }
     }
 
     public function biscuits(){
-        echo $this->uname;
+        // echo $this->uname;
         $res = $this->model('account_model')->get_account();
         // print_r($res);
         foreach($res as $datas){
-            echo $this->passwd;
+            // echo $this->passwd;
             // print_r($datas['username']);
             $auth = ( ( $this->uname == $datas['username'] ) && ( $this->passwd == $datas['password'] ) )? TRUE: FALSE;
             // echo $_SESSION['auth'].'<br>';

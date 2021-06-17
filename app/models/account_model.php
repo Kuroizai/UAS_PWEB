@@ -13,9 +13,4 @@ class account_model{
         $this->myconn->query('SELECT * FROM '.$this->table);
         return  $this->myconn->fetchAll();
     }
-
-    public function check(){
-        $this->accounts = $this->get_account();
-        
-    }
 }
